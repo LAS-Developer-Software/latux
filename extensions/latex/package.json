@@ -1,0 +1,151 @@
+{
+  "name": "latex",
+  "displayName": "LaTeX Tools",
+  "description": "MIT LaTeX extension with Overleaf integration, PDF preview, compiler and mini editor.",
+  "version": "1.0.0",
+  "publisher": "yourname",
+  "engines": {
+    "vscode": "^1.63.0"
+  },
+  "activationEvents": [
+    "onLanguage:latex",
+    "onCommand:latex.openOverleaf",
+    "onCommand:latex.compile",
+    "onCommand:latex.previewPdf",
+    "onView:latexProject",
+    "onView:latexTools",
+    "onCommand:latex.installTectonic",
+    "onCommand:latex.openMiniEditor"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "latex",
+        "aliases": ["LaTeX"],
+        "extensions": [".tex"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "latex",
+        "scopeName": "text.tex.latex",
+        "path": "./syntaxes/latex.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      { "command": "latex.openOverleaf", "title": "Open Overleaf" },
+      { "command": "latex.compile", "title": "Compile LaTeX" },
+      { "command": "latex.previewPdf", "title": "Preview PDF" },
+      { "command": "latex.openMiniEditor", "title": "Open Mini Editor" },
+      { "command": "latex.refreshProject", "title": "Refresh LaTeX Project" },
+      {
+        "command": "latex.installTectonic",
+        "title": "Install Tectonic",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "latex.repairCompiler",
+        "title": "Repair LaTeX Compiler",
+        "icon": "$(tools)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "latexTools",
+          "title": "LaTeX",
+          "icon": "./media/latex.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "latexToolsView",
+        "contents": "Tectonic ist nicht installiert. [$(download) Tectonic installieren](command:latex.installTectonic)"
+      }
+    ],
+    "views": {
+      "latexTools": [
+        {
+          "id": "latexToolsView",
+          "name": "Werkzeuge",
+          "icon": "./media/latex.svg"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "latexProject",
+          "name": "LaTeX Project",
+          "icon": "$(file-code)",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "latex.refreshProject",
+          "when": "view == latexProject",
+          "group": "navigation"
+        },
+        {
+          "command": "latex.installTectonic",
+          "when": "view == latexToolsView",
+          "group": "navigation"
+        },
+        {
+          "command": "latex.repairCompiler",
+          "when": "view == latexToolsView",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "latex.compile",
+          "when": "editorLangId == latex",
+          "group": "navigation@1"
+        },
+        {
+          "command": "latex.previewPdf",
+          "when": "editorLangId == latex",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LaTeX",
+      "properties": {
+        "latex.compiler": {
+          "type": "string",
+          "enum": ["tectonic", "pdflatex", "latexmk"],
+          "default": "tectonic",
+          "description": "LaTeX-Compiler für den Build."
+        },
+        "latex.compilerPath": {
+          "type": "string",
+          "description": "Optionaler Pfad zu tectonic.exe oder einem anderen LaTeX-Compiler."
+        }
+      }
+    }
+  },
+  "main": "./out/extension.js",
+  "files": [
+    "out/**",
+    "media/**",
+    "syntaxes/**",
+    "language-configuration.json",
+    "package.json",
+    "bin/tectonic.exe"
+  ],
+  "scripts": {
+    "compile": "yarn tsc -p tsconfig.json",
+    "build-ext": "yarn compile",
+    "vscode:prepublish": "yarn build-ext"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.4"
+  }
+
+}

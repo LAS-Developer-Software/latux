@@ -1,0 +1,8 @@
+<iframe src="https://www.overleaf.com" style="width:100%;height:100%;border:none;"></iframe>
+<script>
+    // Intercept downloads (Overleaf uses blob URLs)
+    window.addEventListener('message', e => {
+        const vscode = acquireVsCodeApi();
+        vscode.postMessage({ command: 'download', filename: e.data.filename, data: e.data.blob });
+    });
+</script>

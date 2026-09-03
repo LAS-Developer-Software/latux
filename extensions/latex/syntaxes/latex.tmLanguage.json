@@ -1,0 +1,54 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode-textmate/master/syntaxes/schema.json",
+  "name": "LaTeX",
+  "scopeName": "text.tex.latex",
+  "fileTypes": [
+    "tex",
+    "latex"
+  ],
+  "patterns": [
+    {
+      "name": "comment.line.percentage.tex",
+      "match": "%.*$",
+      "captures": {
+        "0": {
+          "name": "comment.line.percentage.tex"
+        }
+      }
+    },
+    {
+      "name": "keyword.control.tex",
+      "match": "\\\\(?:begin|end|section|subsection|subsubsection|chapter|documentclass|usepackage|item|textbf|textit|texttt|emph)\\b"
+    },
+    {
+      "name": "string.quoted.double.tex",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#escaped-char"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.tex",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#escaped-char"
+        }
+      ]
+    },
+    {
+      "name": "constant.numeric.tex",
+      "match": "\\b\\d+(?:\\.\\d+)?\\b"
+    }
+  ],
+  "repository": {
+    "escaped-char": {
+      "match": "\\\\.",
+      "name": "constant.character.escape.tex"
+    }
+  }
+}
