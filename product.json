@@ -1,6 +1,6 @@
 {
-	"nameShort": "Latux - Latex Editor",
-	"nameLong": "Latux - Latex Editor",
+	"nameShort": "Latux - Latex code Editor",
+	"nameLong": "Latux - Latex code Editor",
 	"applicationName": "latux",
 	"dataFolderName": ".latux",
 	"win32MutexName": "latux",
