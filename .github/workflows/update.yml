@@ -1,0 +1,81 @@
+name: Build & Publish Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --frozen-lockfile
+
+      - name: Set build version
+        id: version
+        shell: pwsh
+        run: |
+          $package = Get-Content package.json | ConvertFrom-Json
+          $version = "$($package.version)-build${{ github.run_number }}"
+          $package.version = $version
+          $package | ConvertTo-Json -Depth 20 | Set-Content package.json
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Build Windows x64 archive
+        run: yarn gulp vscode-win32-x64
+
+      - name: Create release archive
+        shell: pwsh
+        run: Compress-Archive -Path ..\VSCode-win32-x64\* -DestinationPath Latux-win32-x64.zip
+
+      - name: Checkout update repository
+        uses: actions/checkout@v3
+        with:
+          repository: LAS-Developer-Software/latux-updates
+          token: ${{ secrets.UPDATE_REPO_TOKEN }}
+          path: update-repo
+
+      - name: Create GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.UPDATE_REPO_TOKEN }}
+        run: |
+          gh release create "v${{ steps.version.outputs.version }}" Latux-win32-x64.zip `
+            --repo LAS-Developer-Software/latux-updates `
+            --title "Latux ${{ steps.version.outputs.version }}" `
+            --notes "Automated build from ${{ github.sha }}"
+
+      - name: Write update feed
+        shell: pwsh
+        run: |
+          $commit = "${{ github.sha }}"
+          $version = "${{ steps.version.outputs.version }}"
+          $download = "https://github.com/LAS-Developer-Software/latux-updates/releases/download/v$version/Latux-win32-x64.zip"
+          $feed = @{ version = $version; productVersion = $version; url = $download } | ConvertTo-Json
+          $feedPath = "update-repo/api/update/win32-x64-archive/stable/$commit"
+          New-Item -ItemType Directory -Force (Split-Path $feedPath) | Out-Null
+          Set-Content -Path $feedPath -Value $feed
+
+      - name: Publish update feed
+        shell: pwsh
+        run: |
+          cd update-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api/update
+          git commit -m "Publish v${{ steps.version.outputs.version }}"
+          git push
