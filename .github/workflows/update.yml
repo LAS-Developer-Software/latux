@@ -28,6 +28,10 @@ jobs:
       - name: Install dependencies
         run: |
           corepack enable
+          $env:npm_config_runtime = 'electron'
+          $env:npm_config_target = '13.5.2'
+          $env:npm_config_disturl = 'https://electronjs.org/headers'
+          $env:npm_config_build_from_source = 'true'
           $env:npm_config_openssl_fips = ''
           yarn install --frozen-lockfile
 
