@@ -14,11 +14,12 @@ exports.dirs = [
     'extensions/json-language-features/server',
     'extensions/markdown-language-features',
     'extensions/markdown-math',
+    'extensions/simple-browser',
     'remote',
     'remote/web',
     'test/automation',
     'test/integration/browser',
     'test/monaco',
     'test/smoke',
-	'extensions/latex' // <-- Hier hinzufügen --- IGNORE ---
+    'extensions/latex' // <-- Hier hinzufügen --- IGNORE ---
 ];
