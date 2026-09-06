@@ -32,7 +32,8 @@
 		"ms-vscode.vscode-js-profile-table",
 		"GitHub.remotehub",
 		"GitHub.remotehub-insiders"
-	]
+	],
+	"builtInExtensions": []
 
 
 
