@@ -25,6 +25,17 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Prepare Electron native headers
+        shell: pwsh
+        run: |
+          npx --yes node-gyp@9.1.0 install --target=13.5.2 --dist-url=https://electronjs.org/headers
+          $headerRoot = Join-Path $env:LOCALAPPDATA 'node-gyp\Cache\13.5.2'
+          $commonHeader = Join-Path $headerRoot 'include\node\common.gypi'
+          if (!(Test-Path $commonHeader)) {
+            throw "Electron common.gypi was not downloaded: $commonHeader"
+          }
+          Copy-Item $commonHeader (Join-Path $headerRoot 'common.gypi') -Force
+
       - name: Install dependencies
         run: |
           corepack enable
