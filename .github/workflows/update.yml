@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: 16
 
+      - name: Setup Python for native dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Install dependencies
         run: |
           corepack enable
