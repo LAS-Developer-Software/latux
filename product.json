@@ -32,15 +32,7 @@
 		"ms-vscode.vscode-js-profile-table",
 		"GitHub.remotehub",
 		"GitHub.remotehub-insiders"
-	],
-"builtInExtensions": [
-    {
-        "name": "json",
-        "version": "1.0.0",
-        "path": "extensions/json"
-    }
-
-]
+	]
 
 
 
