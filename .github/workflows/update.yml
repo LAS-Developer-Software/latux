@@ -72,7 +72,7 @@ jobs:
         run: Compress-Archive -Path ..\VSCode-win32-x64\* -DestinationPath Latux-win32-x64.zip
 
       - name: Checkout update repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: LAS-Developer-Software/latux-updates
           token: ${{ secrets.UPDATE_REPO_TOKEN }}
