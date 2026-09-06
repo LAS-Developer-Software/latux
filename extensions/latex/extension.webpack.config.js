@@ -5,14 +5,14 @@
 const path = require('path');
 
 module.exports = {
-    context: path.join(__dirname, '..'),
+    context: __dirname,
     mode: 'none',
     target: 'node',
     entry: {
         extension: './src/extension.ts'
     },
     output: {
-        path: path.join(__dirname, '../dist'),
+        path: path.join(__dirname, 'dist'),
         filename: 'extension.js',
         libraryTarget: 'commonjs2'
     },
