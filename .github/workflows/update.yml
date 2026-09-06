@@ -36,6 +36,14 @@ jobs:
           }
           Copy-Item $commonHeader (Join-Path $headerRoot 'common.gypi') -Force
 
+          npx --yes node-gyp@9.1.0 install --target=14.16.0 --dist-url=https://nodejs.org/dist
+          $headerRoot = Join-Path $env:LOCALAPPDATA 'node-gyp\Cache\14.16.0'
+          $commonHeader = Join-Path $headerRoot 'include\node\common.gypi'
+          if (!(Test-Path $commonHeader)) {
+            throw "Node common.gypi was not downloaded: $commonHeader"
+          }
+          Copy-Item $commonHeader (Join-Path $headerRoot 'common.gypi') -Force
+
       - name: Install dependencies
         run: |
           corepack enable
