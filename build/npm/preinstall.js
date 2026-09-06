@@ -54,9 +54,9 @@ function hasSupportedVisualStudioVersion() {
 			availableVersions.push(version);
 			break;
 		}
-		const programFiles86Path = process.env['ProgramFiles(x86)'];
-		if (programFiles86Path) {
-			vsPath = `${programFiles86Path}/Microsoft Visual Studio/${version}`;
+		const programFilesPaths = [process.env['ProgramFiles(x86)'], process.env['ProgramFiles']].filter(Boolean);
+		for (const programFilesPath of programFilesPaths) {
+			vsPath = `${programFilesPath}/Microsoft Visual Studio/${version}`;
 			const vsTypes = ['Enterprise', 'Professional', 'Community', 'Preview', 'BuildTools'];
 			if (vsTypes.some(vsType => fs.existsSync(path.join(vsPath, vsType)))) {
 				availableVersions.push(version);
