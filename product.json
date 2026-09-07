@@ -23,7 +23,7 @@
 	"darwinBundleIdentifier": "com.visualstudio.code.latux",
 	"linuxIconName": "com.visualstudio.code.latux",
 	"quality": "stable",
-	"updateUrl": "https://raw.githubusercontent.com/LAS-Developer-Software/latux-updates/main",
+	"updateUrl": "https://api.github.com/repos/LAS-Developer-Software/latux/releases/latest",
 	"licenseFileName": "LICENSE.txt",
 	"urlProtocol": "code-oss",
 	"webviewContentExternalBaseUrlTemplate": "https://{{uuid}}.vscode-webview.net/insider/c42793d0357ff9c6589cce79a847177fd42852ee/out/vs/workbench/contrib/webview/browser/pre/",

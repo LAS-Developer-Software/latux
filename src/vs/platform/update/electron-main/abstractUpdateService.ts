@@ -15,6 +15,10 @@ import { IRequestService } from 'vs/platform/request/common/request';
 import { AvailableForDownload, IUpdateService, State, StateType, UpdateType } from 'vs/platform/update/common/update';
 
 export function createUpdateURL(platform: string, quality: string, productService: IProductService): string {
+	if (productService.updateUrl?.includes('api.github.com/repos/') && productService.updateUrl.endsWith('/releases/latest')) {
+		return productService.updateUrl;
+	}
+
 	return `${productService.updateUrl}/api/update/${platform}/${quality}/${productService.commit}`;
 }
 

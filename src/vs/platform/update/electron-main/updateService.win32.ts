@@ -114,7 +114,8 @@ export class Win32UpdateService extends AbstractUpdateService {
 
 		this.requestService.request({ url: this.url }, CancellationToken.None)
 			.then<IUpdate | null>(asJson)
-			.then(update => {
+			.then(response => {
+				const update = this.toUpdate(response);
 				const updateType = getUpdateType();
 
 				if (!update || !update.url || !update.version || !update.productVersion) {
@@ -173,6 +174,38 @@ export class Win32UpdateService extends AbstractUpdateService {
 				const message: string | undefined = !!context ? (err.message || err) : undefined;
 				this.setState(State.Idle(getUpdateType(), message));
 			});
+	}
+
+	private toUpdate(response: any): IUpdate | null {
+		if (response?.tag_name && Array.isArray(response.assets)) {
+			const asset = response.assets.find((candidate: any) => candidate.name === 'Latux-win32-x64.zip');
+			const version = String(response.tag_name).replace(/^v/, '');
+			if (!asset?.browser_download_url || !version || !this.isNewerVersion(version, this.productService.version)) {
+				return null;
+			}
+
+			return { version, productVersion: version, url: asset.browser_download_url };
+		}
+
+		return response;
+	}
+
+	private isNewerVersion(candidate: string, current: string): boolean {
+		const parse = (value: string) => value.match(/^(\d+)\.(\d+)\.(\d+)/);
+		const candidateParts = parse(candidate);
+		const currentParts = parse(current);
+		if (!candidateParts || !currentParts) {
+			return candidate !== current;
+		}
+
+		for (let index = 1; index <= 3; index++) {
+			const difference = Number(candidateParts[index]) - Number(currentParts[index]);
+			if (difference !== 0) {
+				return difference > 0;
+			}
+		}
+
+		return candidate !== current;
 	}
 
 	protected override async doDownloadUpdate(state: AvailableForDownload): Promise<void> {
