@@ -1,0 +1,6 @@
+{
+  "displayName": "Greeting",
+  "description": "A friendly greeting extension that welcomes you with your name based on time of day",
+  "commands.showWelcome": "Show Welcome Message",
+  "commands.changeName": "Change Your Name"
+}

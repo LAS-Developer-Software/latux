@@ -29,6 +29,7 @@ const extensionsPath = path.join(path.dirname(__dirname), 'extensions');
 // 	ignore: ['**/out/**', '**/node_modules/**']
 // });
 const compilations = [
+	'greeting/tsconfig.json',
 	'image-preview/tsconfig.json',
 	'json-language-features/client/tsconfig.json',
 	'json-language-features/server/tsconfig.json',

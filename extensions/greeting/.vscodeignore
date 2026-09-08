@@ -1,0 +1,11 @@
+out/**
+dist/**
+node_modules/**
+.vscode-test/**
+**/*.map
+**/*.ts
+src/**
+tsconfig.json
+webpack.config.js
+.gitignore
+README.md

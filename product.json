@@ -1,42 +1,51 @@
 {
-	"nameShort": "Latux - Latex code Editor",
-	"nameLong": "Latux - Latex code Editor",
-	"applicationName": "latux",
-	"dataFolderName": ".latux",
-	"win32MutexName": "latux",
-	"licenseName": "MIT",
-	"licenseUrl": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt",
-	"serverGreeting": [],
-	"serverLicense": [],
-	"serverLicensePrompt": "",
-	"win32DirName": "Microsoft Latux",
-	"win32NameVersion": "Microsoft Latux",
-	"win32RegValueName": "Latux",
-	"win32AppId": "{{E34003BB-9E10-4501-8C11-BE3FAA83F23F}",
-	"win32x64AppId": "{{D77B7E06-80BA-4137-BCF4-654B95CCEBC5}",
-	"win32arm64AppId": "{{D1ACE434-89C5-48D1-88D3-E2991DF85475}",
-	"win32UserAppId": "{{C6065F05-9603-4FC4-8101-B9781A25D88E}",
-	"win32x64UserAppId": "{{CC6B787D-37A0-49E8-AE24-8559A032BE0C}",
-	"win32arm64UserAppId": "{{3AEBF0C8-F733-4AD4-BADE-FDB816D53D7B}",
-	"win32AppUserModelId": "Microsoft.Latux",
-	"win32ShellNameShort": "C&ode - Latux",
-	"darwinBundleIdentifier": "com.visualstudio.code.latux",
-	"linuxIconName": "com.visualstudio.code.latux",
-	"quality": "stable",
-	"updateUrl": "https://api.github.com/repos/LAS-Developer-Software/latux/releases/latest",
-	"licenseFileName": "LICENSE.txt",
-	"urlProtocol": "code-oss",
-	"webviewContentExternalBaseUrlTemplate": "https://{{uuid}}.vscode-webview.net/insider/c42793d0357ff9c6589cce79a847177fd42852ee/out/vs/workbench/contrib/webview/browser/pre/",
-	"extensionAllowedProposedApi": [
-		"ms-vscode.vscode-js-profile-flame",
-		"ms-vscode.vscode-js-profile-table",
-		"GitHub.remotehub",
-		"GitHub.remotehub-insiders"
-	],
-	"builtInExtensions": []
+  "nameShort": "Latux - Latex code Editor",
+  "nameLong": "Latux - Latex code Editor",
+  "applicationName": "latux",
+  "dataFolderName": ".latux",
+  "win32MutexName": "latux",
+  "licenseName": "MIT",
+  "licenseUrl": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt",
+  "serverGreeting": [],
+  "serverLicense": [],
+  "serverLicensePrompt": "",
+  "win32DirName": "Microsoft Latux",
+  "win32NameVersion": "Microsoft Latux",
+  "win32RegValueName": "Latux",
+  "win32AppId": "{{E34003BB-9E10-4501-8C11-BE3FAA83F23F}",
+  "win32x64AppId": "{{D77B7E06-80BA-4137-BCF4-654B95CCEBC5}",
+  "win32arm64AppId": "{{D1ACE434-89C5-48D1-88D3-E2991DF85475}",
+  "win32UserAppId": "{{C6065F05-9603-4FC4-8101-B9781A25D88E}",
+  "win32x64UserAppId": "{{CC6B787D-37A0-49E8-AE24-8559A032BE0C}",
+  "win32arm64UserAppId": "{{3AEBF0C8-F733-4AD4-BADE-FDB816D53D7B}",
+  "win32AppUserModelId": "Microsoft.Latux",
+  "win32ShellNameShort": "C&ode - Latux",
+  "darwinBundleIdentifier": "com.visualstudio.code.latux",
+  "linuxIconName": "com.visualstudio.code.latux",
+  "quality": "stable",
+  "updateUrl": "https://api.github.com/repos/LAS-Developer-Software/latux/releases/latest",
+  "licenseFileName": "LICENSE.txt",
+  "urlProtocol": "code-oss",
+  "webviewContentExternalBaseUrlTemplate": "https://{{uuid}}.vscode-webview.net/insider/c42793d0357ff9c6589cce79a847177fd42852ee/out/vs/workbench/contrib/webview/browser/pre/",
 
+  "extensionGallery": {
+    "serviceUrl": "",
+    "itemUrl": "",
+    "cacheUrl": ""
+  },
 
+  "extensionAllowedProposedApi": [
+    "ms-vscode.vscode-js-profile-flame",
+    "ms-vscode.vscode-js-profile-table",
+    "GitHub.remotehub",
+    "GitHub.remotehub-insiders"
+  ],
 
+  "builtInExtensions": [
+    "latex-green"
+  ],
 
-
+  "settingsDefaults": {
+    "workbench.colorTheme": "latex-green"
+  }
 }

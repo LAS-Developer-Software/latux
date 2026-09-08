@@ -1,0 +1,23 @@
+{
+  "name": "latex-green",
+  "displayName": "Latux - Green",
+  "description": "Green Theme",
+  "version": "0.0.1",
+  "publisher": "Johann",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "id": "latex-green",
+        "label": "Latux Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/latux-color-theme.json"
+      }
+    ]
+  }
+}
